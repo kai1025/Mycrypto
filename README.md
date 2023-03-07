@@ -1,1 +1,1 @@
-# Mycrypto
+# go加密函数
