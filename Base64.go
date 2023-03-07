@@ -11,6 +11,11 @@ const (
 
 var coder = base64.NewEncoding(base64Table)
 
+/*
+src:待加密数据
+num:加密次数
+*/
+
 func Base64Encode(src []byte, num int) []byte { //编码
 	if num >= 1 {
 		for i := 0; i < num; i++ {
