@@ -2,6 +2,7 @@ package Mycrypto
 
 import (
 	"encoding/base64"
+	"encoding/hex"
 	"fmt"
 )
 
@@ -37,4 +38,34 @@ func Base64Decode(src []byte, num int) []byte { //解码
 		fmt.Println("error:num<1")
 	}
 	return src
+}
+func HexDecode(src []byte, num int) []byte {
+	for i := 0; i < num; i++ {
+		src, _ = hex.DecodeString(string(src))
+	}
+	return src
+}
+func HexEncode(src []byte, num int) []byte {
+	for i := 0; i < num; i++ {
+		src = []byte(hex.EncodeToString(src))
+	}
+	return src
+}
+
+func XorCrypto(data []byte, keywords string) (out []byte) {
+	out = make([]byte, len(data))
+
+	for i, v := range data {
+		out[i] = v ^ keywords[i%len(keywords)]
+	}
+	return out
+}
+
+func NonCrypto(data []byte) (out []byte) {
+	out = make([]byte, len(data))
+
+	for i, v := range data {
+		out[i] = ^v
+	}
+	return out
 }
